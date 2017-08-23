@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Vacadmin</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta description="Vacadmin is a tool to help the administration of dairy easier">
+		<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="style/style.css">
+
+	</head>
+	<body>
+		<!--Menu que colapsa a la medida de mediano y pequeño -->
+		<div class="container">
+			<div class="row">
+				<nav class="navbar navbar-inverse">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="index.html">VacAdmin</a>
+						</div>
+						<div class="collapse navbar-collapse" id="myNavbar">
+
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="sing_up.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+								<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+								<li><a href="home_administrador.html"><span class="glyphicon glyphicon-leaf"></span> Ir a</a></li>
+								<li><a href="home_colaborador.html"><span class="glyphicon glyphicon-leaf"></span> Ir c</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+
+		</div>
+			<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-flex">
+					<form id="login_form" onsubmit="event.preventDefault();">
+						<div class="form-group">
+							<label for="name">Name or Nick Name</label>
+							<input type="text" class="form-control required" id="nick" aria-describedby="emailHelp" placeholder="@ Name or Nick Name" required="required">
+
+						</div>
+
+						<div class="form-group">
+							<label for="contraseña">Contraseña</label>
+							<input type="password" class="form-control required" id="contraseña" aria-describedby="emailHelp" placeholder="Contraseña">
+
+						</div>
+
+						<button type="submit" class="btn btn-success" id="btn-login" onclick="login()">Log In</button>
+					</form>
+				</div>
+
+
+			</div>
+
+		</div>
+	</body>
+	<script type="text/javascript" src="bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/jquery-3.2.1.js" ></script>
+	<script type="text/javascript" src="bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+</html>
