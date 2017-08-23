@@ -10,8 +10,8 @@ $(document).ready(function() {
     } else {
         usuarios = usuariosLocal;
     }
-    if (!usuarioActual) {
-        actual=[];
+    if (!usuarioActual || usuarioActual.length == 0) {
+        window.location.replace("index.html");
 
     } else {
         actual = usuarioActual;
@@ -20,15 +20,15 @@ $(document).ready(function() {
     mostrar_tableros(actual[2]);
 
     var btn = document.getElementById('btn-submit');
-    btn.onclick = function(){
-      crear_tableros(actual[2]);
+    btn.onclick = function() {
+        crear_tableros(actual[2]);
     }
 
-    $(".btn-success").click(function(){
-      var tablero = $(this).val();
-      var res = tablero.split("$");
-      localStorage.setItem('tablero-actual', JSON.stringify(res));
-      window.location.replace("tablero.html");
+    $(".btn-success").click(function() {
+        var tablero = $(this).val();
+        var res = tablero.split("$");
+        localStorage.setItem('tablero-actual', JSON.stringify(res));
+        window.location.replace("tablero.html");
     });
 
 });
@@ -39,39 +39,42 @@ $(document).ready(function() {
 
 
 function crear_tableros(correo) {
-  var tableros = JSON.parse(localStorage.getItem('tableros'));
+    var tableros = JSON.parse(localStorage.getItem('tableros'));
 
-  //Si tableros es null entonces inicializa el arreglo
-  if(!tableros){
-  tableros = new Array();
-  }
+    //Si tableros es null entonces inicializa el arreglo
+    if (!tableros) {
+        tableros = new Array();
+    }
 
-  //Crea un arreglo con la información del nuevo tablero
-  var tablero =new Array();
-  if (typeof(Storage) !== "undefined") {
+    //Crea un arreglo con la información del nuevo tablero
+    var tablero = new Array();
+    if (typeof(Storage) !== "undefined") {
 
-  tablero[0] = correo;
-  tablero[1] = document.getElementById("table_name").value;
+        tablero[0] = correo;
+        tablero[1] = document.getElementById("table_name").value;
 
 
-  //Inyecta la nueva tarea a las tareas del localStorage
-  tableros.push(tablero);
+        //Inyecta la nueva tarea a las tareas del localStorage
+        tableros.push(tablero);
 
-  //Guarda tareas en el localStorage
-  localStorage.setItem("tableros", JSON.stringify(tableros));
-  }
-  location.reload();
+        //Guarda tareas en el localStorage
+        localStorage.setItem("tableros", JSON.stringify(tableros));
+    }
+    location.reload();
 }
 
-function mostrar_tableros(correo){
-  var div_tableros = document.getElementById('lista_de_tablas');
-  var tableros = JSON.parse(localStorage.getItem('tableros'));
-  for (var i = 0; i < tableros.length; i++) {
-      if (tableros[i][0] == correo) {
-          div_tableros.innerHTML += '<button class="btn btn-success"'+
-          'value="'+tableros[i][0]+"$"+tableros[i][1]+'">' + tableros[i][1] + '</button><br>';
-      }
-  }
+function mostrar_tableros(correo) {
+    var div_tableros = document.getElementById('lista_de_tablas');
+    var tableros = JSON.parse(localStorage.getItem('tableros'));
+    if (tableros!=null ) {
+        for (var i = 0; i < tableros.length; i++) {
+            if (tableros[i][0] == correo) {
+                div_tableros.innerHTML += '<button class="btn btn-success"' +
+                    'value="' + tableros[i][0] + "$" + tableros[i][1] + '">' + tableros[i][1] + '</button><br>';
+            }
+        }
+    }
+
 }
 
 /*
@@ -107,4 +110,11 @@ function guardar_local(key, valor_a_guardar) {
         localStorage.setItem(key, valor_a_guardar);
         return console.log("valor guardado con exito");
     }
+}
+
+function logout() {
+
+    localStorage.removeItem('actual');
+    window.location.replace("index.html");
+
 }
